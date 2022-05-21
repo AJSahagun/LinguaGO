@@ -1,12 +1,14 @@
 from tkinter import *
-import tkinter as tk
 from tkinter import ttk, messagebox
 from ttkwidgets.autocomplete import AutocompleteCombobox
 
 root = Tk()
-root.title('TRANSLATOR PROTOTYPE')
+root.title('LinguaGO')
 root.configure(background='#1e1e24')
-root.geometry("958x400")
+icon = PhotoImage(file=r"C:\Users\user\Desktop\Programming\Python\PYCHARM\L.png")
+# a raw string of the file path to be recognized as icon
+root.iconphoto(False, icon)
+root.geometry("824x350")
 
 # FUNCTIONS FOR BUTTONS AND FUNCTIONALITY
 
@@ -39,24 +41,24 @@ input_box = Text(root,
                  height=10,
                  width=40,
                  font='Arial')
+input_box.grid(row=1, columnspan=2, padx=10, pady=10)
 
-input_box.grid(row=0, column=0, pady=20, padx=10)
-
+translate_photo = PhotoImage(file="icon-trans.png").subsample(2, 2)
 # TRANSLATE BUTTON
 trans_butt = Button(root,
-                text="Translate!",
-                bg="#46474f",
-                fg="#e0e0e0",
-                font=("Helvetica", 24),
+                image=translate_photo,
+                bg="#e0e0e0",
+                fg="#46474f",
                 command=translate)
-trans_butt.grid(row=0, column=1, padx=10)
+trans_butt.grid(row=1, column=3, padx=10, pady=10)
+
 
 # OUTPUT TEXT BOX
 output_box = Text(root,
                   height=10,
                   width=40,
                   font='Arial')
-output_box.grid(row=0, column=2, pady=20, padx=10)
+output_box.grid(row=1, column=4, padx=10, pady=10)
 
 # DISABLE INPUT IN OUTPUT BOX
 
@@ -67,32 +69,35 @@ spllchck_photo = PhotoImage(file="icon-spellcheck.png").subsample(2, 2)
 button_spellcheck = Button(root,
                            image=spllchck_photo,
                            bg="#e0e0e0",
-                           fg="#e0e0e0",
+                           fg="#46474f",
                            command=spellcheck_input)
-button_spellcheck.grid(row=4, column=0, pady=5, padx=5)
+button_spellcheck.grid(row=2, columnspan=2, padx=5, pady=5)
 
-tts_photo = PhotoImage(file="icons-tts.png").subsample(2, 2)
+tts_photo = PhotoImage(file="icon-tts.png").subsample(2, 2)
 button_tts1 = Button(root,
                      image=tts_photo,
                      bg="#e0e0e0",
-                     fg="#e0e0e0",
+                     fg="#46474f",
                      command=text_to_speech_input)
-button_tts1.grid(row=2, column=0, pady=5, padx=5)
+button_tts1.grid(row=2, columnspan=1, padx=5, pady=5)
+
 
 button_tts2 = Button(root,
                      image=tts_photo,
                      bg="#e0e0e0",
-                     fg="#e0e0e0",
+                     fg="#46474f",
                      command=text_to_speech_output)
-button_tts2.grid(row=2, column=2, pady=5, padx=5)
+button_tts2.grid(row=2, column=4, padx=5, pady=5)
+
 
 stt_photo = PhotoImage(file="icon-stt.png").subsample(2, 2)
 button_stt = Button(root,
                      image=stt_photo,
                      bg="#e0e0e0",
-                     fg="#e0e0e0",
+                     fg="#46474f",
                      command=speech_to_text)
-button_stt.grid(row=3, column=0, pady=5, padx=5)
+button_stt.grid(row=2, column=1, padx=5, pady=5)
+
 
 
 lang_list = ['']
@@ -102,13 +107,15 @@ lang_list = ['']
 combo_style = ttk.Style()
 combo_style.theme_use('xpnative')
 
-combo_1 = AutocompleteCombobox(root, width=20, completevalues=lang_list) # shows the languages in dropdown
+combo_1 = AutocompleteCombobox(root, width=30, completevalues=lang_list) # shows the languages in dropdown
 combo_1.current(0)
-combo_1.grid(row=1, column=0)
+combo_1.grid(row=3, columnspan=3, pady=10, padx=10)
 
-combo_trans = AutocompleteCombobox(root, width=20, completevalues=lang_list)
+
+combo_trans = AutocompleteCombobox(root, width=30, completevalues=lang_list)
 combo_trans.current(0)
-combo_trans.grid(row=1, column=2)
+combo_trans.grid(row=3, column=4, padx=10, pady=10)
+
 
 # CLEAR BUTTON
 
@@ -117,7 +124,8 @@ clearbutt = Button(root,
                    bg="#46474f",
                    fg="#e0e0e0",
                    command=clear)
-clearbutt.grid(row=2, column=1)
+clearbutt.grid(row=2, column=3, padx=10, pady=10)
+
 
 # SWITCH BUTTON
 
@@ -125,8 +133,9 @@ switch_photo = PhotoImage(file="icon-swap.png").subsample(2, 2)
 switch_butt = Button(root,
                      image=switch_photo,
                      bg="#e0e0e0",
-                     fg="#e0e0e0",
+                     fg="#46474f",
                      command=switcher)
-switch_butt.grid(row=1, column=1)
+switch_butt.grid(row=3, column=3, pady=5, padx=5)
+
 
 root.mainloop()
